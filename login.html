@@ -5,15 +5,13 @@
     <title>Attendance Register</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
-        *
-        {
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
         }
-        body 
-        {
+        body {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -21,8 +19,7 @@
             flex-direction: column;
             background: #23242a;
         }
-        .box 
-        {
+        .box {
             position: relative;
             width: 380px;
             height: 540px; /* Increased height to accommodate the roll number field */
@@ -30,8 +27,7 @@
             border-radius: 8px;
             overflow: hidden;
         }
-        .box::before 
-        {
+        .box::before {
             content: '';
             z-index: 1;
             position: absolute;
@@ -43,8 +39,7 @@
             background: linear-gradient(0deg,transparent,#45f3ff,#45f3ff);
             animation: animate 6s linear infinite;
         }
-        .box::after 
-        {
+        .box::after {
             content: '';
             z-index: 1;
             position: absolute;
@@ -57,19 +52,15 @@
             animation: animate 6s linear infinite;
             animation-delay: -3s;
         }
-        @keyframes animate 
-        {
-            0%
-            {
+        @keyframes animate {
+            0% {
                 transform: rotate(0deg);
             }
-            100%
-            {
+            100% {
                 transform: rotate(360deg);
             }
         }
-        form 
-        {
+        form {
             position: absolute;
             inset: 2px;
             background: #28292d;
@@ -79,21 +70,18 @@
             display: flex;
             flex-direction: column;
         }
-        h2 
-        {
+        h2 {
             color: #45f3ff;
             font-weight: 500;
             text-align: center;
             letter-spacing: 0.1em;
         }
-        .inputBox 
-        {
+        .inputBox {
             position: relative;
             width: 300px;
             margin-top: 35px;
         }
-        .inputBox input, .inputBox select 
-        {
+        .inputBox input, .inputBox select {
             position: relative;
             width: 100%;
             padding: 20px 10px 10px;
@@ -107,8 +95,7 @@
             transition: 0.5s;
             z-index: 10;
         }
-        .inputBox span 
-        {
+        .inputBox span {
             position: absolute;
             left: 0;
             padding: 20px 0px 10px;
@@ -121,14 +108,12 @@
         .inputBox input:valid ~ span,
         .inputBox input:focus ~ span,
         .inputBox select:valid ~ span,
-        .inputBox select:focus ~ span 
-        {
+        .inputBox select:focus ~ span {
             color: #45f3ff;
             transform: translateX(0px) translateY(-34px);
             font-size: 0.75em;
         }
-        .inputBox i 
-        {
+        .inputBox i {
             position: absolute;
             left: 0;
             bottom: 0;
@@ -144,29 +129,24 @@
         .inputBox input:valid ~ i,
         .inputBox input:focus ~ i,
         .inputBox select:valid ~ i,
-        .inputBox select:focus ~ i
-        {
+        .inputBox select:focus ~ i {
             height: 44px;
         }
-        .links 
-        {
+        .links {
             display: flex;
             justify-content: space-between;
         }
-        .links a 
-        {
+        .links a {
             margin: 10px 0;
             font-size: 0.75em;
             color: #8f8f8f;
             text-decoration: beige;
         }
         .links a:hover, 
-        .links a:nth-child(2)
-        {
+        .links a:nth-child(2) {
             color: #45f3ff;
         }
-        input[type="submit"]
-        {
+        input[type="submit"] {
             border: none;
             outline: none;
             padding: 11px 25px;
@@ -177,15 +157,14 @@
             width: 100px;
             margin-top: 10px;
         }
-        input[type="submit"]:active 
-        {
+        input[type="submit"]:active {
             opacity: 0.8;
         }
     </style>
 </head>
 <body>
     <div class="box">
-        <form id="loginForm" action="/login" method="POST" autocomplete="off">
+        <form id="loginForm" autocomplete="off">
             <h2>Attendance Register</h2>
             <div class="inputBox">
                 <select name="role" required id="roleSelect">
@@ -197,17 +176,17 @@
                 <i></i>
             </div>
             <div class="inputBox" id="rollNumberBox" style="display: none;">
-                <input type="text" name="roll_number" required="required">
+                <input type="text" name="roll_number" id="rollNumberInput">
                 <span>Roll Number</span>
                 <i></i>
             </div>
             <div class="inputBox">
-                <input type="text" name="username" required="required">
+                <input type="text" name="username" id="usernameInput" required="required">
                 <span>Username</span>
                 <i></i>
             </div>
             <div class="inputBox">
-                <input type="password" name="password" required="required">
+                <input type="password" name="password" id="passwordInput" required="required">
                 <span>Password</span>
                 <i></i>
             </div>
@@ -220,15 +199,32 @@
     </div>
 
     <script>
+        document.getElementById('roleSelect').addEventListener('change', function() {
+            var rollNumberBox = document.getElementById('rollNumberBox');
+            if (this.value === 'student') {
+                rollNumberBox.style.display = 'block';
+            } else {
+                rollNumberBox.style.display = 'none';
+            }
+        });
+
         document.getElementById('loginForm').addEventListener('submit', function(event) {
             event.preventDefault(); // Prevents the default form submission
             var role = document.getElementById('roleSelect').value;
+            var username = document.getElementById('usernameInput').value;
+            var password = document.getElementById('passwordInput').value;
+            var rollNumber = document.getElementById('rollNumberInput').value;
             var url;
-            if (role === 'student') {
-                url = 'student_dashboard.html';
-            } else if (role === 'teacher') {
-                url = 'teacher_dashboard.html';
+
+            if (role === 'student' && username === 'project' && password === '1234' && rollNumber === '1') {
+                url = 'Student-Dashboard-main/Dasboard2.html';
+            } else if (role === 'teacher' && username === 'project' && password === '1234') {
+                url = '';
+            } else {
+                alert('Invalid credentials');
+                return; // Exit the function to prevent redirection
             }
+
             window.location.href = url; // Redirects to the selected dashboard
         });
     </script>

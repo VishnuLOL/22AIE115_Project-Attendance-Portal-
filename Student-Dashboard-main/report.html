@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <link rel="shortcut icon" href="./images/logo.png">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <style>
+        .timetable{
+            width: 85%;
+            height: auto;
+            margin: 500px 0 5% 7%;
+        }
+    </style>
+    <header>
+        <div class="navbar">
+            <a href="Dasboard2.html">
+                <span class="material-icons-sharp">home</span>
+                <h3>Home</h3>
+            </a>
+            <a href="timetable.html" onclick="timeTableAll()">
+                <span class="material-icons-sharp">today</span>
+                <h3>Time Table</h3>
+            </a> 
+            <a href="exam.html">
+                <span class="material-icons-sharp">grid_view</span>
+                <h3>Examination</h3>
+            </a>
+            <a href="report.html" class="active">
+                <span class="material-icons-sharp">grid_view</span>
+                <h3>Attendance Report</h3>
+            </a>
+            <a href="../login.html">
+                <span class="material-icons-sharp">logout</span>
+                <h3>Logout</h3>
+            </a>
+        </div>
+        <div id="profile-btn">
+            <span class="material-icons-sharp">person</span>
+        </div>
+    </header>
+    \end{code}
+    <main>
+        <div class="exam timetable" style="width: 85%;
+        height: auto;
+        margin: 300px 0 5% 7%;">
+            <h2>Attendance Report</h2><br>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Subject</th>
+                        <th>Total Classes</th>
+                        <th>Classes Attended</th>
+                        <th>Percentage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>User Interface Design</td>
+                        <td>29</td>
+                        <td>27</td>
+                        <td>93%</td>
+                    </tr>
+                    <tr>
+                        <td>Elements Of Computing</td>
+                        <td>30</td>
+                        <td>27</td>
+                        <td>90%</td>
+                    </tr>
+                    <tr>
+                        <td>OOPS</td>
+                        <td>27</td>
+                        <td>25</td>
+                        <td>92%</td>
+                    </tr>
+                    <tr>
+                        <td>Data Structures and Algorithms</td>
+                        <td>25</td>
+                        <td>24</td>
+                        <td>96%</td>
+                    </tr>
+                    <tr>
+                        <td>Computational Mathematics</td>
+                        <td>14</td>
+                        <td>12</td>
+                        <td>86%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+   
+ 
+    <button class="download-btn" onclick="downloadPDF()">Download Report as PDF</button>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.21/jspdf.plugin.autotable.min.js"></script>
+    <script>
+        function downloadPDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            doc.text("Student Attendance Report", 20, 10);
+            doc.autoTable({ html: '#report-table', startY: 20 });
+
+            doc.save("report.pdf");
+        }
+    </script>
+    <script src="timeTable.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
