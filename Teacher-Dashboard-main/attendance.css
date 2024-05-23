@@ -323,8 +323,3 @@ option{
     transition: all 300ms ease;
     color: var(--color-dark);
 }
-.image{
-    position: absolute;
-    top: 30%;
-    right: 17%;
-}
