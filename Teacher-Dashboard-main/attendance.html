@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Attendance Portal</title>
+    <link rel="stylesheet" href="attendance.css">
+</head>
+<body>
+    <header>
+    <div class="navbar">
+        <a href="Dashboard.html">
+            <span class="material-icons-sharp">home</span>
+            <h3>Home</h3>
+        </a>
+        <a href="timetable.html" onclick="timeTableAll()">
+            <span class="material-icons-sharp">today</span>
+            <h3>Time Table</h3>
+        </a> 
+        <a href="attendance.html" class="active">
+            <span class="material-icons-sharp">how_to_reg</span>
+            <h3>Attendance</h3>
+        </a>
+        
+        <a href="../login.html">
+            <span class="material-icons-sharp" >logout</span>
+            <h3>Logout</h3>
+        </a>
+    </div>
+    <div id="profile-btn">
+        <span class="material-icons-sharp">person</span>
+    </div>
+    <div class="theme-toggler">
+       
+    </div> 
+</header> 
+    <div class="container">
+       
+        <div id="formSection">
+            <h2>Mark Attendance</h2>
+            <button id="addStudentButton" onclick="showAddStudentForm()">Add Student</button>
+            <button id="addClassButton" onclick="showAddClassForm()">Add Class</button>
+
+            <label for="classSelector">Class:</label>
+            <select id="classSelector" required onchange="showStudentsList()">
+                <option value="" disabled selected>Select Class</option>
+                \end{code}
+            </select>
+
+            <label for="dateSelector">Date:</label>
+            <input type="date" id="dateSelector" required>
+
+            <label for="periodSelector">Period:</label>
+            <select id="periodSelector" required>
+                <option value="1">Period 1</option>
+                <option value="2">Period 2</option>
+                <option value="3">Period 3</option>
+                <option value="4">Period 4</option>
+                <option value="5">Period 5</option>
+                <option value="6">Period 6</option>
+            </select>
+
+            <label for="semesterSelector">Semester:</label>
+            <select id="semesterSelector" required>
+                <option value="1">Semester 1</option>
+                <option value="2">Semester 2</option>
+                <option value="3">Semester 3</option>
+                <option value="4">Semester 4</option>
+                <option value="5">Semester 5</option>
+                <option value="6">Semester 6</option>
+                <option value="7">Semester 7</option>
+                <option value="8">Semester 8</option>
+            </select>
+
+            <ul id="studentsList">
+                <!-- Populate students dynamically based on the selected class -->
+            </ul>
+
+            <div id="summarySection">
+                <h3>Summary</h3>
+                <p>Total Students: <span id="totalStudents">0</span></p>
+                <p>Total Present: <span id="totalPresent">0</span></p>
+                <p>Total Absent: <span id="totalAbsent">0</span></p>
+                
+            </div>
+
+            <button onclick="submitAttendance()">Submit Attendance</button>
+
+            <!-- Result Section -->
+            <div id="resultSection">
+                <h3>Attendance Result</h3>
+                <p>Date: <span id="attendanceDate"></span></p>
+                <p>Time: <span id="attendanceTime"></span></p>
+                <p>Class: <span id="attendanceClass"></span></p>
+                <p>Total Students: <span id="attendanceTotalStudents"></span></p>
+                <p>Present: <span id="attendancePresent"></span></p>
+                <p>Absent: <span id="attendanceAbsent"></span></p>
+             
+            </div>
+        </div>
+    </div>
+
+<div id="addStudentPopup" class="popup">
+        <h2>Add Student</h2>
+        <label for="newStudentName">Student Name:</label>
+        <input type="text" id="newStudentName" required>
+        <label for="newStudentRoll">Roll Number:</label>
+        <input type="text" id="newStudentRoll" required>
+        <button onclick="addStudent()">Submit</button>
+        <button onclick="closePopup('addStudentPopup')">Cancel</button>
+    </div>
+
+    <div id="addClassPopup" class="popup">
+        <h2>Add Class</h2>
+        <label for="newClassName">Class Name:</label>
+        <input type="text" id="newClassName" required>
+        <button onclick="addClass()">Submit</button>
+        <button onclick="closePopup('addClassPopup')">Cancel</button>
+    </div>
+
+    <script src="attendance.js"></script>
+</body>
+</html>
